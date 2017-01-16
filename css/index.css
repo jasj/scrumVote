@@ -1,0 +1,237 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+  
+  
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+	
+	background: #63856a; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #63856a 1%, #3c5a40 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#63856a), color-stop(100%,#3c5a40)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #63856a 1%,#3c5a40 100%); /* W3C */
+}
+
+/* Portrait layout (default) */
+.app {
+	position: absolute;
+	top: 38px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #63856a; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #63856a 1%, #3c5a40 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#63856a), color-stop(100%,#3c5a40)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #63856a 1%,#3c5a40 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #63856a 1%,#3c5a40 100%); /* W3C */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/* Mi parte*/
+
+.menu-top{
+	position: absolute;
+	top: 0px;
+	height: 20px;
+	right: 0px;
+	left:0px;
+	
+	background-color: #ECEAEC;
+	border: 1px solid #ccc;
+	
+	font-size: 16px;
+	padding: 8px;
+	
+}
+
+.menu-top label{
+	float: right;
+}
+
+.pokerCard{
+	width: 31%;
+	height: 31%;
+	margin-left: 1.6%;
+	margin-top: 1.6%;
+	border-radius: 5px;
+	border: 1px solid #bb8822;
+	float: left;
+	
+}
+
+.pokerCard .front, .bigCard .front{
+	background-color: #DFDBE5;
+	background-image: url("data:image/svg+xml,%3Csvg width='20' height='12' viewBox='0 0 20 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 12c0-.622-.095-1.221-.27-1.785A5.982 5.982 0 0 0 10 12c1.67 0 3.182-.683 4.27-1.785A5.998 5.998 0 0 0 14 12h2a4 4 0 0 1 4-4V6c-1.67 0-3.182.683-4.27 1.785C15.905 7.22 16 6.622 16 6c0-.622-.095-1.221-.27-1.785A5.982 5.982 0 0 0 20 6V4a4 4 0 0 1-4-4h-2c0 .622.095 1.221.27 1.785A5.982 5.982 0 0 0 10 0C8.33 0 6.818.683 5.73 1.785 5.905 1.22 6 .622 6 0H4a4 4 0 0 1-4 4v2c1.67 0 3.182.683 4.27 1.785A5.998 5.998 0 0 1 4 6c0-.622.095-1.221.27-1.785A5.982 5.982 0 0 1 0 6v2a4 4 0 0 1 4 4h2zm-4 0a2 2 0 0 0-2-2v2h2zm16 0a2 2 0 0 1 2-2v2h-2zM0 2a2 2 0 0 0 2-2H0v2zm20 0a2 2 0 0 1-2-2h2v2zm-10 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' fill='%23ec1f07' fill-opacity='0.54' fill-rule='evenodd'/%3E%3C/svg%3E");
+	
+	
+}
+
+.bigCard .back{
+	background-color: white;
+	border-radius: 5px;
+	font-size: 88px;
+	font-family: 'Questrial', sans-serif;
+	
+	font-size: 88px;
+	font-family: 'Questrial', sans-serif;
+	line-height: 150px;
+	text-align: center;
+	color: #bb4444;
+}
+
+.pokerCard .back{
+	background-color: white;
+	border-radius: 5px;
+	font-size: 88px;
+	font-family: 'Questrial', sans-serif;
+	
+	font-size: 88px;
+	font-family: 'Questrial', sans-serif;
+	line-height: 150px;
+	text-align: center;
+	color: #bb4444;
+}
+
+.modal{
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	top: 38px;
+	background: rgba(60,50,50,0.7);
+	
+	display: none;
+}
+
+#menu{
+	position: absolute;
+	left:-250px;
+	bottom: 0px;
+	top: 38px;
+	width: 250px;
+	
+	background-color: #ECEAEC;
+	border: 1px solid #ccc;
+	
+}
+
+.login{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background: #003082;
+    color: white;
+    text-align: center;
+    font-size: 150px;
+    line-height: 100px;
+    padding-top: 30%;
+}
+
+.login input {
+   padding: 8px;
+	width: 80%;
+	margin-left: calc(10% - 10px);
+	margin-right: calc(10% - 10px);
+	margin-bottom: -18px;
+
+}
+
+.bigCard{
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 19px);	
+	
+	display: none;
+}
+
