@@ -88,21 +88,27 @@ $("#ec").tapend(function(){
 	$(".login").hide();
 	
 		ws = new WebSocket($("#server").val());
+		
 		ws.onopen = function(){
 			conectar();
 			addPlayer();
 			$(".pokerCard").flip(true);
-		}	  	  
+		}	  	
+
+		ws.onerror = function (error) {
+		  console.log('WebSocket Error ' + error);
+		};
 });
 
 $(".pokerCard").tapend(function(){
+	$(".bigCard .back").html($(this).attr("value"));
 	addCard($(this).attr("value"));
 	$(".bigCard").fadeIn( "slow" );
 	$(".pokerCard").flip(true);
 	$(".bigCard").flip(false);
 });
 
-$(".bigCard").tapend(function(){
+$(".bigCard .back").tapend(function(){
 	flip();
 	$(".bigCard").fadeOut( "slow" );
 });
@@ -123,6 +129,6 @@ function flip(){
 }
 
 
-$(".bigCard").css({height : (window.innerHeight -25)+"px"});
-$(".bigCard .back").css({"line-height" : (window.innerHeight -25)+"px"});
+$(".bigCard").css({height : (window.innerHeight -35)+"px"});
+$(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 
