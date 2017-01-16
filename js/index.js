@@ -54,7 +54,7 @@ $(".fa-bars").tapend(function(){
 });
 
 $(".modal").tapend(function(){
-	$("#menu").animate({left : "-250px"});
+	$("#menu").animate({left : "-80%"});
 	$(".modal").hide();
 });
 

@@ -193,10 +193,10 @@ h1 {
 
 #menu{
 	position: absolute;
-	left:-250px;
+	left:-80%;
 	bottom: 0px;
 	top: 38px;
-	width: 250px;
+	width: 80%;
 	
 	background-color: #ECEAEC;
 	border: 1px solid #ccc;
