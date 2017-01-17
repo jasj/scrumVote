@@ -106,10 +106,11 @@ $(".pokerCard").tapend(function(){
 	$(".bigCard").fadeIn( "slow" );
 	$(".pokerCard").flip(true);
 	$(".bigCard").flip(false);
+	flip();
 });
 
 $(".bigCard .back").tapend(function(){
-	flip();
+	
 	$(".bigCard").fadeOut( "slow" );
 });
 function conectar(){
