@@ -107,7 +107,7 @@ $("#ec").tapend(function(){
 			};
 			  
 		  }catch(e){
-			  alert("no es un cod de session");
+			  alert(e);
 		  }
 		  
           alert("We got a barcode\n" +
