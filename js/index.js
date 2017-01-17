@@ -106,6 +106,8 @@ $("#ec").tapend(function(){
 			  console.log('WebSocket Error ' + error);
 			};
 			  
+		  }catch(e){
+			  alert("no es un cod de session");
 		  }
 		  
           alert("We got a barcode\n" +
