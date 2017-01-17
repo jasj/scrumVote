@@ -138,3 +138,22 @@ function flip(){
 $(".bigCard").css({height : (window.innerHeight -35)+"px"});
 $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 
+
+ 
+
+   
+   document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+   cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );
+}
