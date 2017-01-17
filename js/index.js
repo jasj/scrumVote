@@ -84,20 +84,42 @@ $(".bigCard").flip();
 
 $("#ec").tapend(function(){
 	
-	caso = 37220;
-	$(".login").hide();
+	 cordova.plugins.barcodeScanner.scan(
+      function (result) {
+		  url = "";
+		  try{
+			  var codec = JSON.parse(result.text);
+			  caso = codec.issue;
+			  url = codec.url;
+			  $(".login").hide();
+			  
 	
-		ws = new WebSocket($("#server").val());
-		
-		ws.onopen = function(){
-			conectar();
-			addPlayer();
-			$(".pokerCard").flip(true);
-		}	  	
+			ws = new WebSocket(codec.url);
+			
+			ws.onopen = function(){
+				conectar();
+				addPlayer();
+				$(".pokerCard").flip(true);
+			}	  	
 
-		ws.onerror = function (error) {
-		  console.log('WebSocket Error ' + error);
-		};
+			ws.onerror = function (error) {
+			  console.log('WebSocket Error ' + error);
+			};
+			  
+		  }
+		  
+          alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );
+	
+
+	
 });
 
 $(".pokerCard").tapend(function(){
@@ -145,15 +167,5 @@ $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
    document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-   cordova.plugins.barcodeScanner.scan(
-      function (result) {
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
-      }, 
-      function (error) {
-          alert("Scanning failed: " + error);
-      }
-   );
+  $("#ec").fadeIn("slow");
 }
