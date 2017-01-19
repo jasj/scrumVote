@@ -143,7 +143,7 @@ $(".bigCard .back").tapend(function(){
 	$(".bigCard").fadeOut( "slow" );
 });
 function conectar(){
-	 ws.send(JSON.stringify({"type" : "connect", "connectionType" : "PLAYER", "id" : "ID"+caso}));
+	 ws.send(JSON.stringify({"type" : "connect", "connectionType" : "PLAYER", "id" : "ID"+caso, "player" : $("#user").val()}));
 }
 
 function addPlayer(){
