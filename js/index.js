@@ -136,22 +136,23 @@ $("#ec").tapend(function(){
 					break;
 				}
 		   }
+		   
+		   ws.onclose = function(){
+			    sweetAlert("Conexión Perdida", "Alguna de las partes cerro la comunicación", "error");
+		   }
 
 			ws.onerror = function (error) {
-			  console.log('WebSocket Error ' + error);
+			  sweetAlert("Conexión Perdida", error, "error");
 			};
 			  
 		  }catch(e){
-			  alert(e);
+			 sweetAlert("Oops...", "Código QR invalido", "error");
 		  }
 		  
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+         
       }, 
       function (error) {
-          alert("Scanning failed: " + error);
+         sweetAlert("Oops...", "Algo salio mal!", "error");
       }
    );
 	
@@ -177,6 +178,57 @@ $(".bigCard .back").tapend(function(){
 	
 	$(".bigCard").fadeOut( "slow" );
 });
+
+
+/*
+	Acciones del menu
+*/
+
+	$("#otroNumero").tapend(function(){
+		
+		swal({
+		  title: "Numero Personalizado",
+		  text: "Escriba el número que se adapte a su votación",
+		  type: "input",
+		  showCancelButton: true,
+		  closeOnConfirm: false,
+		  animation: "slide-from-top",
+		  inputPlaceholder: "Puntos"
+		},
+		function(inputValue){
+		  if (inputValue === false) return false;
+		  
+		  if (inputValue === "") {
+			swal.showInputError("Escriba algún número");
+			return false
+		  }
+		  
+		   if (Number.isInteger(inputValue)) {
+			   	$(".bigCard .back").html(inputValue);
+				addCard(inputValue);
+				$(".bigCard").fadeIn( "slow" );
+				$(".pokerCard").flip(true);
+				$(".bigCard").flip(false);
+			
+		  }else{
+			  swal.showInputError("Los puntos son numéricos");
+			  return false
+		  }
+		  
+		});
+	})
+	
+	$("#verHistorico").tapend(function(){
+		
+	});
+	
+	$("#leerCodigo").tapend(function(){
+		$("#ec").trigger("tapend");
+	})
+	
+	
+	
+//Funciones de procesamiento del mensaje
 function conectar(){
 	 ws.send(JSON.stringify({"type" : "connect", "connectionType" : "PLAYER", "id" : "ID"+caso, "player" : $("#user").val()}));
 }
