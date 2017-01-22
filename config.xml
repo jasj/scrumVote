@@ -64,8 +64,8 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
 	<plugin name="cordova-plugin-barcodescanner" />
+	<plugin name="cordova-plugin-sqlite-2" />
 	
-
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
