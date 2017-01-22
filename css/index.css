@@ -228,3 +228,19 @@ h1 {
 
 #ec{display : none;}
 
+#msg{
+	position: absolute;
+	left:50%;
+	top: 50%;
+	
+	width: 80%;
+	height: 200px;
+	
+	margin-left: -40%;
+	margin-top: -100px;
+	
+	background: #efefef;
+	border: 1px solid #cccccc;
+	
+}
+

@@ -100,7 +100,32 @@ $("#ec").tapend(function(){
 				conectar();
 				addPlayer();
 				$(".pokerCard").flip(true);
-			}	  	
+			}	
+
+
+
+						//message recive 
+			ws.onmessage = function (evt) 
+		   { 
+				console.log(evt.data);
+				var msg = JSON.parse(evt.data);
+				switch(msg.type){
+					case "sendResults":
+						swal("Votación Concluida", "la votación quedo en: <strong> "+msg.result+"</strong>", "success")
+					break;
+					
+					case "newIssue":
+						swal("Cambio de Caso","Se ha solicitado votar por: <strong>"+msg.newIssue+"</strong>")
+					break;
+					
+					case "voteAgain":
+						sweetAlert("Oops...", "Se le solicita volver a votar", "error");
+					break;
+					
+					default:
+					break;
+				}
+		   }
 
 			ws.onerror = function (error) {
 			  console.log('WebSocket Error ' + error);
@@ -171,3 +196,10 @@ $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 function onDeviceReady() {
   $("#ec").fadeIn("slow");
 }
+
+
+
+
+
+
+
