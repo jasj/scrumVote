@@ -185,17 +185,18 @@ $(".bigCard .back").tapend(function(){
 */
 
 	$("#otroNumero").tapend(function(){
-		
+		 $(".modal").trigger("tapend");
 		swal({
 		  title: "Numero Personalizado",
 		  text: "Escriba el número que se adapte a su votación",
 		  type: "input",
 		  showCancelButton: true,
-		  closeOnConfirm: true,
+		  closeOnConfirm: false,
 		  animation: "slide-from-top",
 		  inputPlaceholder: "Puntos"
 		},
 		function(inputValue){
+			
 		  if (inputValue === false) return false;
 		  
 		  if (inputValue === "") {
@@ -210,22 +211,32 @@ $(".bigCard .back").tapend(function(){
 				$(".bigCard").fadeIn( "slow" );
 				$(".pokerCard").flip(true);
 				$(".bigCard").flip(false);
+				swal.close();
 			
 		  }else{
 			  swal.showInputError("Los puntos son numéricos");
 			  return false
 		  }
-		  
+		 
 		});
 	})
 	
 	$("#verHistorico").tapend(function(){
+		resultsTable();
+		$("#results").show();
+		
+		$(".modal").trigger("tapend");
 		
 	});
 	
 	$("#leerCodigo").tapend(function(){
 		$("#ec").trigger("tapend");
+		$(".modal").trigger("tapend");
 	})
+	
+	$("#btn_resultsBack").tapend(function(){
+		$("#results").hide();
+	});
 	
 	
 	
@@ -259,6 +270,17 @@ $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 function onDeviceReady() {
   $("#ec").fadeIn("slow");
 }
+
+
+function resultsTable(){
+	$(".fixed_headers td:nth-child(1) , .fixed_headers th:nth-child(1)").css({"width": (window.innerWidth * 0.30)+"px"})
+	$(".fixed_headers td:nth-child(2) , .fixed_headers th:nth-child(2)").css({"width": (window.innerWidth * 0.20)+"px"})
+	$(".fixed_headers td:nth-child(3) , .fixed_headers th:nth-child(3)").css({"width": (window.innerWidth * 0.20)+"px"})
+	$(".fixed_headers td:nth-child(4) , .fixed_headers th:nth-child(4)").css({"width": (window.innerWidth * 0.20)+"px"})
+	$(".fixed_headers tbody ").css({"height": (window.innerHeight - 200)+"px"})
+	
+}
+
 
 
 
