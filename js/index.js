@@ -208,13 +208,13 @@ $(".bigCard .back").tapend(function(){
 			 swal.showInputError("Los puntos son numéricos");
 			  return false
 			
-		  }else{
+		  }
 			    $(".bigCard .back").html(value);
 				addCard(inputValue);
 				$(".bigCard").fadeIn( "slow" );
 				$(".pokerCard").flip(true);
 				$(".bigCard").flip(false);
-		  }
+		  
 		  
 		});
 	})
