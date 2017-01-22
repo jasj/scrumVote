@@ -191,7 +191,7 @@ $(".bigCard .back").tapend(function(){
 		  text: "Escriba el número que se adapte a su votación",
 		  type: "input",
 		  showCancelButton: true,
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  animation: "slide-from-top",
 		  inputPlaceholder: "Puntos"
 		},
@@ -203,18 +203,18 @@ $(".bigCard .back").tapend(function(){
 			return false
 		  }
 		  
-		  var value = parseInt(inputValue);
-		   if (isNaN(value)) {
-			 swal.showInputError("Los puntos son numéricos");
-			  return false
-			
-		  }
-			    $(".bigCard .back").html(value);
+
+		   if (/^\d+$/.test(inputValue)) {
+			   	$(".bigCard .back").html(inputValue);
 				addCard(inputValue);
 				$(".bigCard").fadeIn( "slow" );
 				$(".pokerCard").flip(true);
 				$(".bigCard").flip(false);
-		  
+			
+		  }else{
+			  swal.showInputError("Los puntos son numéricos");
+			  return false
+		  }
 		  
 		});
 	})
