@@ -111,11 +111,21 @@ $("#ec").tapend(function(){
 				var msg = JSON.parse(evt.data);
 				switch(msg.type){
 					case "sendResults":
-						swal("Votación Concluida", "la votación quedo en: <strong> "+msg.result+"</strong>", "success")
+						swal({
+							  title: "Votación Concluida",
+							  text: "El resultado de la votación es  <span style='color:#F8BB86'>"+msg.result+"<span>.",
+							  html: true,
+							  type: "success"
+							});
 					break;
 					
 					case "newIssue":
-						swal("Cambio de Caso","Se ha solicitado votar por: <strong>"+msg.newIssue+"</strong>")
+						swal({
+							  title: "Nuevo Caso",
+							  text: "Se le solicita votar por el caso <span style='color:#F8BB86'>"+msg.newIssue+"<span>.",
+							  html: true,
+							  type: "success"
+							});
 					break;
 					
 					case "voteAgain":
@@ -196,6 +206,8 @@ $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 function onDeviceReady() {
   $("#ec").fadeIn("slow");
 }
+
+
 
 
 
