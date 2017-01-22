@@ -124,7 +124,7 @@ $("#ec").tapend(function(){
 							  title: "Nuevo Caso",
 							  text: "Se le solicita votar por el caso <span style='color:#F8BB86'>"+msg.newIssue+"<span>.",
 							  html: true,
-							  type: "success"
+							  type: "info"
 							});
 					break;
 					
