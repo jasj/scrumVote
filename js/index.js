@@ -203,16 +203,17 @@ $(".bigCard .back").tapend(function(){
 			return false
 		  }
 		  
-		   if (Number.isInteger(inputValue)) {
-			   	$(".bigCard .back").html(inputValue);
+		  var value = parseInt(inputValue);
+		   if (isNaN(value)) {
+			 swal.showInputError("Los puntos son numéricos");
+			  return false
+			
+		  }else{
+			    $(".bigCard .back").html(value);
 				addCard(inputValue);
 				$(".bigCard").fadeIn( "slow" );
 				$(".pokerCard").flip(true);
 				$(".bigCard").flip(false);
-			
-		  }else{
-			  swal.showInputError("Los puntos son numéricos");
-			  return false
 		  }
 		  
 		});
