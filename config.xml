@@ -64,7 +64,7 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
 	<plugin name="cordova-plugin-barcodescanner" />
-	<plugin name="cordova-sqlite-storage" source="cordova.apache.org"/>
+	<plugin name="cordova-plugin-sqlite-2"/>
 	
 	
     <!-- Third party plugins -->
