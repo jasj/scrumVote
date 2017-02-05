@@ -16,7 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+db = null;
 var app = {
+	
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -33,7 +35,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+		db = window.sqlitePlugin.openDatabase({name: 'scrumplayer.db', location: 'default'});
+		
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -43,10 +46,14 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
+		
+		
 
         console.log('Received Event: ' + id);
     }
 };
+
+
 
 $(".fa-bars").tapend(function(){
 	$("#menu").animate({left : "0px"});
@@ -117,6 +124,13 @@ $("#ec").tapend(function(){
 							  html: true,
 							  type: "success"
 							});
+							
+							 db.transaction(function(tx) {
+								 tx.executeSql('CREATE TABLE IF NOT EXISTS scrumplayer (issue,vote, score)');
+								 tx.executeSql('INSERT INTO scrumplayer VALUES (?,?,?)', [msg.issue, vVote,msg.result]);
+							 })
+							
+							
 					break;
 					
 					case "newIssue":
@@ -159,8 +173,9 @@ $("#ec").tapend(function(){
 
 	
 });
-
+var vVote = $(this).attr("value");
 $(".pokerCard").tapend(function(){
+	vVote = $(this).attr("value");
 	$(".bigCard .back").html($(this).attr("value"));
 	addCard($(this).attr("value"));
 	$(".bigCard").fadeIn( "slow" );
@@ -273,11 +288,23 @@ function onDeviceReady() {
 
 
 function resultsTable(){
+	
 	$(".fixed_headers td:nth-child(1) , .fixed_headers th:nth-child(1)").css({"width": (window.innerWidth * 0.30)+"px"})
 	$(".fixed_headers td:nth-child(2) , .fixed_headers th:nth-child(2)").css({"width": (window.innerWidth * 0.20)+"px"})
 	$(".fixed_headers td:nth-child(3) , .fixed_headers th:nth-child(3)").css({"width": (window.innerWidth * 0.20)+"px"})
 	$(".fixed_headers td:nth-child(4) , .fixed_headers th:nth-child(4)").css({"width": (window.innerWidth * 0.20)+"px"})
 	$(".fixed_headers tbody ").css({"height": (window.innerHeight - 200)+"px"})
+	
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT  issue,vote, score FROM scrumplayer', [], function(tx, rs) {
+			$(".fixed_headers tbody").html();
+			for(var i=0; i < rs.rows.length; i++){
+				$(".fixed_headers tbody").append("<tr><td>"+rs.rows.item(0).issue+"</td><td>"+rs.rows.item(0).vote+"</td><td>"+rs.rows.item(0).score+"</td></tr>");
+			}
+		}, function(tx, error) {
+		  console.log('SELECT error: ' + error.message);
+		});
+  });
 	
 }
 
