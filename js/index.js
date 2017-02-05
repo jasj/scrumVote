@@ -299,7 +299,9 @@ function resultsTable(){
 		tx.executeSql('SELECT  issue,vote, score FROM scrumplayer', [], function(tx, rs) {
 			$(".fixed_headers tbody").html();
 			for(var i=0; i < rs.rows.length; i++){
-				$(".fixed_headers tbody").append("<tr><td>"+rs.rows.item(0).issue+"</td><td>"+rs.rows.item(0).vote+"</td><td>"+rs.rows.item(0).score+"</td></tr>");
+				var score = rs.rows.item(i).score;
+				var vote = rs.rows.item(i).vote;
+				$(".fixed_headers tbody").append("<tr><td>"+rs.rows.item(i).issue+"</td><td>"+vote+"</td><td>"+score+"</td><td>"+(parseInt(score)-parseInt(vote))+"</td></tr>");
 			}
 		}, function(tx, error) {
 		  console.log('SELECT error: ' + error.message);
