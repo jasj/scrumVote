@@ -298,11 +298,19 @@ function resultsTable(){
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT  issue,vote, score FROM scrumplayer', [], function(tx, rs) {
 			$(".fixed_headers tbody").html();
+			var detlaAcc = 0;
+			var deltaMax = 0;
 			for(var i=0; i < rs.rows.length; i++){
 				var score = rs.rows.item(i).score;
 				var vote = rs.rows.item(i).vote;
-				$(".fixed_headers tbody").append("<tr><td>"+rs.rows.item(i).issue+"</td><td>"+vote+"</td><td>"+score+"</td><td>"+(parseInt(score)-parseInt(vote))+"</td></tr>");
+				var delta = (parseInt(score)-parseInt(vote))
+				detlaAcc += delta;
+				deltaMax = Math.max(delta,deltaMax);
+				$(".fixed_headers tbody").append("<tr><td>"+rs.rows.item(i).issue+"</td><td>"+vote+"</td><td>"+score+"</td><td>"+delta+"</td></tr>");
 			}
+			
+			$("#deltaMax").html(deltaMax)
+			$("#deltaAvg").html(detlaAcc/rs.rows.length)
 		}, function(tx, error) {
 		  console.log('SELECT error: ' + error.message);
 		});
