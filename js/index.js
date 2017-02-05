@@ -35,7 +35,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		db = window.sqlitePlugin.openDatabase({name: 'scrumplayer.db', location: 'default'});
+		db = sqlitePlugin.openDatabase('mydb.db', '1.0', '', 1);
 		
     },
     // Update DOM on a Received Event
