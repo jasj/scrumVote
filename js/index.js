@@ -284,6 +284,7 @@ $(".bigCard .back").css({"line-height" : (window.innerHeight -35)+"px"});
 
 function onDeviceReady() {
   $("#ec").fadeIn("slow");
+  cordova.plugins.backgroundMode.enable();
 }
 
 

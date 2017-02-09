@@ -65,6 +65,8 @@
     <plugin name="cordova-plugin-vibration" />
 	<plugin name="cordova-plugin-barcodescanner" />
 	<plugin name="cordova-plugin-sqlite-2"/>
+	<plugin name="cordova-plugin-background-mode"/>
+	
 	
 	
     <!-- Third party plugins -->
